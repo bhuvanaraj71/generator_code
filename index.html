@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Random Quote Generator</title>
+</head>
+
+<body>
+    <div id="quote-container">
+        <blockquote id="quote">
+            <p>Loading...</p>
+        </blockquote>
+        <button onclick="getRandomQuote()">New Quote</button>
+    </div>
+
+    <script>
+        const quotes = [
+            {
+                Text: "The only way to do great work is to love what you do.",
+                author: "steve jobs",
+                Image: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRD01iFpoBzD1dAGWYXyRPIjl_Ewoatz5yikqRVPlVl_d4-l686",
+            },
+            {
+                Text: "In three words I can sum up everything I've learned about life: it goes on",
+                author: "Robert Frost",
+                Image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Robert_Frost%2C_1910s.jpg/220px-Robert_Frost%2C_1910s.jpg",
+            },
+            {
+                Text: "The future belongs to those who believe in the beauty of their dreams. ",
+                author: "Eleanor Roosevalt",
+                Image: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRA5kUTkCxzjZqjMtjvHTBk8pAOT2iOlqB8FUn7Ivq_31QqWqUf",
+            },
+            {
+                Text: "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+                author: "Winston S. Churchill",
+                Image: "https://upload.wikimedia.org/wikipedia/commons/8/89/Winston_Spencer-Churchill_%281997%29.jpg",
+            },
+            {
+                Text: "The only limit to our realization of tomorrow will be our doubts of today.",
+                author: "Franklin D. Roosevelt",
+                Image: "https://i.ytimg.com/vi/6ax8VBf2fbg/hqdefault.jpg",
+            },
+        ];
+
+        function getRandomQuote() {
+            const quoteElement = document.getElementById('quote');
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            const { Text, author, Image } = quotes[randomIndex];
+
+            quoteElement.innerHTML = `<p>${Text} - ${author}</p>`;
+
+            const authorImage = document.createElement('img');
+            authorImage.src = Image;
+            authorImage.alt = author;
+
+            
+
+            const existingImage = quoteElement.querySelector('img');
+            if (existingImage) {
+                quoteElement.replaceChild(authorImage, existingImage);
+            } else {
+                quoteElement.appendChild(authorImage);
+            }
+        }
+
+        getRandomQuote();
+    </script>
+</body>
+
+</html>
